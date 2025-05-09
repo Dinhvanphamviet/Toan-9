@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Animate.css for scroll reveal animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* Đặt màu nền mặc định cho body trong dark mode với gradient động */
         body {
@@ -251,6 +253,42 @@
                 max-width: 100%;
             }
         }
+
+        /* Slider styles */
+.slider-dot {
+    transition: all 0.3s ease;
+}
+.slider-dot.active {
+    background: #ffffff;
+    transform: scale(1.2);
+}
+
+.swiper-slide {
+            height: auto !important;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .swiper-button-next, 
+        .swiper-button-prev {
+            color: #38bdf8 !important;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+        
+        .swiper-button-next:after, 
+        .swiper-button-prev:after {
+            font-size: 1.2rem !important;
+        }
+        
+        .swiper-pagination-bullet {
+            background: #38bdf8 !important;
+        }
+        
     </style>
 </head>
 
@@ -263,7 +301,7 @@
 
     <!-- Header -->
     <header class="bg-sky-800 sticky top-0 z-10">
-        <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 font-sans text-white">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 font-sans text-white">
             <div class="flex flex-col space-y-4">
                 <!-- Tiêu đề -->
                 <h1 class="w-full text-center text-4xl font-bold text-white">
@@ -300,264 +338,288 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Part 1 -->
-        <section class="mb-12 animate__animated animate__fadeIn">
-            <h2 class="text-4xl font-bold text-white mb-4">Part 1 <span class="text-sky-400 font-bold">Giải đề Toán 9</span></h2>
-            <div class="border-t border-white pt-6">
-                <!-- Video 1 -->
-                <div class="flex items-center justify-between py-4 border-b border-white video-item animate__animated animate__fadeInUp">
-                    <div class="flex items-center">
-                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-blue-400 font-bold mr-4">1</span>
-                        <div>
-                            <h3 class="text-lg font-bold text-sky-400">Đề thi thử số 1</h3>
-                            <p class="text-white">Phân tích hướng giải quyết và chữa chi tiết</p>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="video.html?id=O1ueNEjWcYY" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                        <a href="https://drive.google.com/file/d/1Mq028DagvwY5JFvWp_ZcbiWrIJEOypLv/view?usp=drive_link" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>
-                    </div>
-                </div>
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 
-                <!-- Video 2 -->
-                <div class="flex items-center justify-between py-4 border-b border-white video-item animate__animated animate__fadeInUp">
-                    <div class="flex items-center">
-                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-blue-400 font-bold mr-4">2</span>
-                        <div>
-                            <h3 class="text-lg font-bold text-sky-400">Đề thi thử số 2</h3>
-                            <p class="text-white">Phân tích hướng giải quyết và chữa chi tiết</p>
-                        </div>
+        <!-- Section mới - Khai giảng khóa học -->
+<section class="mb-12 bg-white bg-opacity-10 rounded-lg p-6 shadow-lg">
+    <div class="flex flex-col md:flex-row gap-8">
+        <!-- Slider ảnh bên trái -->
+        <div class="w-full md:w-1/2">
+            <div class="relative overflow-hidden rounded-lg h-64 md:h-80">
+                <!-- Slider container -->
+                <div class="relative h-full" id="image-slider">
+                    <!-- Ảnh 1 -->
+                    <div class="absolute inset-0 transition-opacity duration-500 opacity-100" data-slide="1">
+                        <img src="images/slider1.png" 
+                             alt="Khóa học Toán" 
+                             class="w-full h-full object-cover">
                     </div>
-                    <div class="flex space-x-4">
-                        <a href="video.html?id=aOfRhiPnO50" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                        <a href="https://drive.google.com/file/d/1Mq028DagvwY5JFvWp_ZcbiWrIJEOypLv/view?usp=drive_link" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>
+                    <!-- Ảnh 2 -->
+                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0" data-slide="2">
+                        <img src="images/slider2.jpg" 
+                             alt="Ôn thi THPT" 
+                             class="w-full h-full object-cover">
                     </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div class="flex items-center justify-between py-4 border-b border-white video-item animate__animated animate__fadeInUp">
-                    <div class="flex items-center">
-                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-blue-400 font-bold mr-4">3</span>
-                        <div>
-                            <h3 class="text-lg font-bold text-sky-400">Đề thi thử số 3</h3>
-                            <p class="text-white">Phân tích hướng giải quyết và chữa chi tiết</p>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="video.html?id=6F63hQyB_l0" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                        <a href="https://drive.google.com/file/d/1Mq028DagvwY5JFvWp_ZcbiWrIJEOypLv/view?usp=drive_link" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>
+                    <!-- Ảnh 3 -->
+                    <div class="absolute inset-0 transition-opacity duration-500 opacity-0" data-slide="3">
+                        <img src="images/slider3.jpg" 
+                             alt="Giải đề thi" 
+                             class="w-full h-full object-cover">
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Part 2 -->
-        <section class="mb-12 animate__animated animate__fadeIn">
-            <h2 class="text-4xl font-bold text-white mb-4">Part 2 <span class="text-sky-400 font-bold">Series Tổng ôn</span></h2>
-            <div class="border-t border-gray-600 pt-4">
-                <!-- Video 4 -->
-                <div class="flex items-center justify-between py-4 border-b border-white video-item animate__animated animate__fadeInUp">
-                    <div class="flex items-center">
-                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-blue-400 font-bold mr-4">4</span>
-                        <div>
-                            <h3 class="text-lg font-bold text-sky-400">Tổng ôn lần 1</h3>
-                            <p class="text-gray-400"></p>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="video.html?id=KoustMu4FQU" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                        <a href="https://drive.google.com/file/d/1Mq028DagvwY5JFvWp_ZcbiWrIJEOypLv/view?usp=drive_link" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>
-                    </div>
+                
+                <!-- Navigation dots -->
+                <div class="flex justify-center mt-4 space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-sky-400 focus:outline-none slider-dot active" data-slide="1"></button>
+                    <button class="w-3 h-3 rounded-full bg-sky-400 focus:outline-none slider-dot" data-slide="2"></button>
+                    <button class="w-3 h-3 rounded-full bg-sky-400 focus:outline-none slider-dot" data-slide="3"></button>
                 </div>
-
-                <!-- Video 5 -->
-                <div class="flex items-center justify-between py-4 border-b border-white video-item animate__animated animate__fadeInUp">
-                    <div class="flex items-center">
-                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-blue-400 font-bold mr-4">5</span>
-                        <div>
-                            <h3 class="text-lg font-bold text-sky-400">Tổng ôn lần 2</h3>
-                            <p class="text-gray-400"></p>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="video.html?id=GZfGu0g47Rw" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                        <a href="https://drive.google.com/file/d/1Mq028DagvwY5JFvWp_ZcbiWrIJEOypLv/view?usp=drive_link" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-sky-800 animate__animated animate__fadeIn">
-        <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <!-- Contact Info -->
-                <div class="text-center md:text-left mb-6 md:mb-0">
-                    <h3 class="text-lg font-semibold text-white">Liên hệ</h3>
-                    <p class="text-white">Email: <a href="mailto:support@hocgit.com" class="text-sky-400 hover:underline">vietphamdinhvan@gmail.com</a></p>
-                    <p class="text-white">Điện thoại: <a href="tel:+84987654321" class="text-sky-400 hover:underline">0326661401</a></p>
-                </div>
-                <!-- Social Icons -->
-                <div class="flex space-x-4">
-                    <a href="https://www.facebook.com/tolavietdayahihi" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24h-1.917c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.729 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/_dinhviet" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                            fillRule="evenodd"
-                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                            clipRule="evenodd"
-                            />
-                        </svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@hoccunglotus?_t=ZS-8w9as6kONJn&_r=1" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên TikTok">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                            d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"
-                            />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="mt-6 text-center">
-                <p class="text-white">© Đinh Văn Phạm Việt</p>
             </div>
         </div>
-    </footer>
+        
+        <!-- Nội dung bên phải -->
+        <div class="w-full md:w-1/2">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-4">Đinh Việt</h3>
+                
+                <div class="mb-6">
+                  <p class="font-semibold">The Best or Nothing</p>
+                  <!--<p class="text-2xl font-bold my-2">0384.982.894</p>-->
+                  <!--<p class="text-sky-400">m.me/ngochuyenlb</p>-->
+                </div>
+                
+                <div class="mb-6">
+                  <h4 class="font-bold text-lg">Đếm ngược ngày thi</h4>
+                  <p class="font-bold text-xl mb-4">HÀ NỘI</p>
+                  
+                  <div class="grid grid-cols-4 gap-2 text-center">
+                    <div class="font-bold">NGÀY</div>
+                    <div class="font-bold">GIỜ</div>
+                    <div class="font-bold">PHÚT</div>
+                    <div class="font-bold">GIÂY</div>
+                    <div id="days" class="text-3xl font-bold">00</div>
+                    <div id="hours" class="text-3xl font-bold">00</div>
+                    <div id="minutes" class="text-3xl font-bold">00</div>
+                    <div id="seconds" class="text-3xl font-bold">00</div>
+                  </div>
+                </div>
+                <p class="text-2xl font-bold mt-4"></p>
+              </div>
+        </div>
+    </div>
+</section>
 
+
+<!-- Slider BON 12 2025 -->
+<section class="max-w-6xl mx-auto my-12 p-6 bg-white/10 rounded-xl shadow-2xl">
+    <h2 class="text-3xl font-bold mb-8 text-center">ĐẠI SỐ</h2>
+    
+    <div class="swiper daiso-slider">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide bg-blue-800/50 rounded-lg overflow-hidden">
+                <div class="h-48 overflow-hidden">
+                  <img src="images/slider1.png" 
+                       alt="Khóa học Start Up" 
+                       class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold mb-2">Căn thức</h3>
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p class="text-lg">Đinh Việt</p>
+                </div>
+                  <p class="text-sm mb-4">Khóa học nền tảng cho học sinh mới bắt đầu</p>
+                  <a href="#" class="btn-primary">Xem thêm</a>
+                </div>
+              </div>
+            
+            <!-- Slide 2 -->
+            <div class="swiper-slide bg-blue-800/50 rounded-lg overflow-hidden">
+                <div class="h-48 overflow-hidden">
+                  <img src="images/slider1.png" 
+                       alt="Khóa học Start Up" 
+                       class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold mb-2">Căn thức</h3>
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p class="text-lg">Đinh Việt</p>
+                </div>
+                  <p class="text-sm mb-4">Khóa học nền tảng cho học sinh mới bắt đầu</p>
+                  <a href="#" class="btn-primary">Xem thêm</a>
+                </div>
+              </div>
+            
+              <!-- Slide 3 -->
+            <div class="swiper-slide bg-blue-800/50 rounded-lg overflow-hidden">
+                <div class="h-48 overflow-hidden">
+                  <img src="images/slider1.png" 
+                       alt="Khóa học Start Up" 
+                       class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold mb-2">Căn thức</h3>
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p class="text-lg">Đinh Việt</p>
+                </div>
+                  <p class="text-sm mb-4">Khóa học nền tảng cho học sinh mới bắt đầu</p>
+                  <a href="#" class="btn-primary">Xem thêm</a>
+                </div>
+              </div>
+            
+            <!-- Slide 4 -->
+            <div class="swiper-slide bg-blue-800/50 rounded-lg overflow-hidden">
+                <div class="h-48 overflow-hidden">
+                  <img src="images/slider1.png" 
+                       alt="Khóa học Start Up" 
+                       class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold mb-2">Căn thức</h3>
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p class="text-lg">Đinh Việt</p>
+                </div>
+                  <p class="text-sm mb-4">Khóa học nền tảng cho học sinh mới bắt đầu</p>
+                  <a href="#" class="btn-primary">Xem thêm</a>
+                </div>
+              </div>
+            
+            
+        </div>
+        
+        <!-- Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<!-- Slider BON 12 2026 -->
+<section class="max-w-6xl mx-auto my-12 p-6 bg-white/10 rounded-xl shadow-2xl">
+    <h2 class="text-3xl font-bold mb-4 text-center">HÌNH HỌC</h2>
+    <h3 class="text-2xl font-semibold mb-2 text-center text-blue-300">THE TRUTH</h3>
+    <p class="text-lg text-center mb-8 text-blue-200">KIẾN THỨC NỀN TẢNG TOÁN 10.11 & THCS</p>
+    
+    <div class="swiper hinhhoc-slider">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide bg-blue-800/50 p-6 rounded-lg border border-blue-400/20">
+                <div class="flex items-center mb-3">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-2">STEP 0</span>
+                    <h4 class="text-xl font-bold">THE TRUTH</h4>
+                </div>
+                <a href="#" class="text-blue-300 hover:text-blue-100 underline">Chi tiết khóa học</a>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="swiper-slide bg-blue-800/50 p-6 rounded-lg border border-blue-400/20">
+                <div class="flex items-center mb-3">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-2">STEP 1</span>
+                    <h4 class="text-xl font-bold">Nền tảng Toán 12</h4>
+                </div>
+                <p class="text-3xl font-bold text-blue-300 mt-4">8 điểm</p>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="swiper-slide bg-blue-800/50 p-6 rounded-lg border border-blue-400/20">
+                <div class="flex items-center mb-3">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-2">STEP 2</span>
+                    <h4 class="text-xl font-bold">Vận dụng Toán 12</h4>
+                </div>
+                <p class="text-3xl font-bold text-blue-300 mt-4">9 điểm</p>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="swiper-slide bg-blue-800/50 p-6 rounded-lg border border-blue-400/20">
+                <div class="flex items-center mb-3">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-2">STEP 3</span>
+                    <h4 class="text-xl font-bold">Vận dụng cao Toán 12</h4>
+                </div>
+                <p class="text-3xl font-bold text-blue-300 mt-4">9+ điểm</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+            
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+<footer class="bg-sky-800 animate__animated animate__fadeIn">
+    <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <!-- Contact Info -->
+            <div class="text-center md:text-left mb-6 md:mb-0">
+                <h3 class="text-lg font-semibold text-white">Liên hệ</h3>
+                <p class="text-white">Email: <a href="mailto:support@hocgit.com" class="text-sky-400 hover:underline">vietphamdinhvan@gmail.com</a></p>
+                <p class="text-white">Điện thoại: <a href="tel:+84987654321" class="text-sky-400 hover:underline">0326661401</a></p>
+            </div>
+            <!-- Social Icons -->
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/tolavietdayahihi" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24h-1.917c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.729 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/_dinhviet" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                        fillRule="evenodd"
+                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                        clipRule="evenodd"
+                        />
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@hoccunglotus?_t=ZS-8w9as6kONJn&_r=1" target="_blank" class="text-white hover:text-sky-400 transition-colors" aria-label="Theo dõi trên TikTok">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                        d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <p class="text-white">Copyright 2025 © Đinh Văn Phạm Việt</p>
+        </div>
+    </div>
+</footer>
     <!-- Tải videos.js -->
     <script src="videos.js"></script>
 
     <!-- JavaScript for Theme Toggle, Scroll to Top, Animations, and Search -->
-    <script>
-        // Kiểm tra nếu đã có chế độ sáng được lưu trong localStorage
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        // Xử lý sự kiện khi nhấn nút chuyển đổi chủ đề
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            const toggleBtn = document.getElementById('theme-toggle');
-            toggleBtn.classList.add('toggling');
-            setTimeout(() => toggleBtn.classList.remove('toggling'), 300);
-            document.body.classList.toggle('light-mode');
-            const isLightMode = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-            document.getElementById('theme-toggle').innerHTML = isLightMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        });
-
-        // Xử lý sự kiện khi nhấn nút cuộn lên đầu trang
-        document.getElementById('scroll-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Hiển thị/ẩn nút cuộn lên đầu trang khi cuộn
-        window.addEventListener('scroll', () => {
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-            if (window.scrollY > 200) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-
-        // Hiệu ứng cuộn hiển thị với IntersectionObserver
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section, .video-item, footer');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', entry.target.classList.contains('video-item') ? 'animate__fadeInUp' : 'animate__fadeIn');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => observer.observe(section));
-        });
-
-        document.getElementById('search-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const query = document.getElementById('search-input').value.trim().toLowerCase();
-            let searchResults = document.getElementById('search-results');
-            
-            // Tạo vùng hiển thị kết quả nếu chưa có
-            if (!searchResults) {
-                searchResults = document.createElement('div');
-                searchResults.id = 'search-results';
-                document.querySelector('main').insertBefore(searchResults, document.querySelector('main').firstChild);
-            }
-
-            // Kiểm tra nếu không nhập gì
-            if (!query) {
-                searchResults.innerHTML = '<p class="text-center text-white text-lg">Không tìm thấy kết quả phù hợp.</p>';
-                return;
-            }
-
-            // Kiểm tra nếu videoData tồn tại
-            if (typeof videoData === 'undefined' || !Array.isArray(videoData)) {
-                searchResults.innerHTML = '<p class="text-center text-white text-lg">Dữ liệu video không tải được. Vui lòng kiểm tra tệp videos.js.</p>';
-                console.error('videoData không tồn tại hoặc không phải là mảng:', typeof videoData, videoData);
-                return;
-            }
-
-            // Lọc kết quả dựa trên title và description
-            const results = videoData.filter(item => {
-                const titleMatch = item.title && item.title.toLowerCase().includes(query);
-                const descMatch = item.description && item.description.toLowerCase().includes(query);
-                return titleMatch || descMatch;
-            });
-
-            // Hiển thị kết quả
-            searchResults.innerHTML = '';
-
-            if (results.length > 0) {
-                results.forEach(result => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    resultItem.innerHTML = `
-                        <h3 class="text-lg font-bold text-sky-400">${result.title}</h3>
-                        <p class="text-white">${result.description || ''}</p>
-                        <div class="flex space-x-4 mt-2">
-                            <a href="video.html?id=${result.id}" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
-                            ${result.link ? `<a href="${result.link}" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>` : ''}
-                        </div>
-                    `;
-                    searchResults.appendChild(resultItem);
-                });
-            } else {
-                searchResults.innerHTML = '<p class="text-center text-white text-lg">Không tìm thấy kết quả phù hợp.</p>';
-            }
-        });
-
-// Reset khi xóa nội dung tìm kiếm
-document.getElementById('search-input').addEventListener('input', (e) => {
-    const searchResults = document.getElementById('search-results');
-    if (e.target.value.trim() === '') {
-        if (searchResults) {
-            searchResults.remove();
-        }
-    }
-});
-
-        // Debug: Kiểm tra videoData khi trang tải
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof videoData === 'undefined') {
-                console.error('videoData không được định nghĩa. Kiểm tra tệp videos.js.');
-            } else {
-                console.log('videoData đã tải thành công:', videoData);
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
