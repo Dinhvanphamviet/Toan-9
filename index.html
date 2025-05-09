@@ -39,7 +39,7 @@
             background: #f0f9ff !important;
         }
         .light-mode .text-white {
-            color: #1e3a8a;
+            color: #1e40af;
         }
         .light-mode .text-sky-400 {
             color: #1e40af;
@@ -153,7 +153,7 @@
             to { transform: scale(1.05); }
         }
         #theme-toggle i {
-        transition: transform 0.3s ease;
+            transition: transform 0.3s ease;
         }
         #theme-toggle.toggling i {
             transform: rotate(180deg);
@@ -166,27 +166,91 @@
         nav a {
             position: relative;
             padding-bottom: 0.25rem;
-            }
+        }
         nav a::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: #38bdf8;
-                transition: width 0.3s ease;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s ease;
         }
         nav a:hover::after {
-                width: 100%;
+            width: 100%;
         }
         .light-mode nav a::after {
             background: #38bdf8;
         }
-        .light-mode nav a:hove  r::after {
+        .light-mode nav a:hover::after {
             background: #38bdf8;
         }
 
+        /* Search bar styles */
+        #search-form {
+            transition: all 0.3s ease;
+        }
+
+        #search-input {
+            border: 2px solid #38bdf8;
+            border-right: none;
+        }
+
+        #search-form button {
+            border: 2px solid #38bdf8;
+            border-left: none;
+        }
+
+        .light-mode #search-input {
+            background: #ffffff;
+            color: #1e40af;
+            border-color: #1e40af;
+        }
+
+        .light-mode #search-form button {
+            background: #38bdf8;
+            color: #ffffff;
+            border-color: #1e40af;
+        }
+
+        .light-mode #search-form button:hover {
+            background: #1e40af;
+        }
+
+        #search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .light-mode #search-input::placeholder {
+            color: #1e40af;
+        }
+
+        /* Search results styles */
+        #search-results {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .light-mode #search-results {
+            background: rgba(30, 64, 175, 0.1);
+        }
+        .search-result-item {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-bottom: 1px solid #ffffff;
+        }
+        .light-mode .search-result-item {
+            border-bottom: 1px solid #1e40af;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            #search-form {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -205,11 +269,30 @@
                 <h1 class="w-full text-center text-4xl font-bold text-white">
                     <a href="index.html" class="hover:text-sky-400 transition-colors duration-300">Đinh Văn Phạm Việt</a>
                 </h1>
+                
+                <!-- Thanh tìm kiếm -->
+                <div class="flex justify-center w-full">
+                    <form id="search-form" class="w-full max-w-md flex items-center">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Tìm kiếm bài giảng, đề thi..." 
+                            class="w-full px-4 py-2 rounded-l-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        >
+                        <button 
+                            type="submit" 
+                            class="px-4 py-2 bg-sky-400 text-white rounded-r-lg hover:bg-sky-500 transition-colors duration-300"
+                        >
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
                 <!-- Menu -->
                 <nav class="flex justify-around w-full">
                     <a href="Daiso.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Đại số</a>
                     <a href="Hinhhoc.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Hình học</a>
-                    <a href="ThongkeXacsuat.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Thống kê Xác suất</a>
+                    <a href="Thongkexacsuat.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Thống kê Xác suất</a>
                     <a href="Tongon.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Tổng ôn</a>
                     <a href="Giaide.html" class="text-xl text-white font-semibold hover:text-sky-400 transition-colors duration-300">Giải đề</a>
                 </nav>
@@ -348,7 +431,10 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Theme Toggle, Scroll to Top, and Animations -->
+    <!-- Tải videos.js -->
+    <script src="videos.js"></script>
+
+    <!-- JavaScript for Theme Toggle, Scroll to Top, Animations, and Search -->
     <script>
         // Kiểm tra nếu đã có chế độ sáng được lưu trong localStorage
         if (localStorage.getItem('theme') === 'light') {
@@ -399,7 +485,79 @@
 
             sections.forEach(section => observer.observe(section));
         });
-        
+
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            let searchResults = document.getElementById('search-results');
+            
+            // Tạo vùng hiển thị kết quả nếu chưa có
+            if (!searchResults) {
+                searchResults = document.createElement('div');
+                searchResults.id = 'search-results';
+                document.querySelector('main').insertBefore(searchResults, document.querySelector('main').firstChild);
+            }
+
+            // Kiểm tra nếu không nhập gì
+            if (!query) {
+                searchResults.innerHTML = '<p class="text-center text-white text-lg">Không tìm thấy kết quả phù hợp.</p>';
+                return;
+            }
+
+            // Kiểm tra nếu videoData tồn tại
+            if (typeof videoData === 'undefined' || !Array.isArray(videoData)) {
+                searchResults.innerHTML = '<p class="text-center text-white text-lg">Dữ liệu video không tải được. Vui lòng kiểm tra tệp videos.js.</p>';
+                console.error('videoData không tồn tại hoặc không phải là mảng:', typeof videoData, videoData);
+                return;
+            }
+
+            // Lọc kết quả dựa trên title và description
+            const results = videoData.filter(item => {
+                const titleMatch = item.title && item.title.toLowerCase().includes(query);
+                const descMatch = item.description && item.description.toLowerCase().includes(query);
+                return titleMatch || descMatch;
+            });
+
+            // Hiển thị kết quả
+            searchResults.innerHTML = '';
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <h3 class="text-lg font-bold text-sky-400">${result.title}</h3>
+                        <p class="text-white">${result.description || ''}</p>
+                        <div class="flex space-x-4 mt-2">
+                            <a href="video.html?id=${result.id}" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Play</a>
+                            ${result.link ? `<a href="${result.link}" target="_blank" class="px-6 py-3 border-4 border-sky-400 text-white font-bold rounded-lg shadow-lg hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 btn-pulse">Link đề</a>` : ''}
+                        </div>
+                    `;
+                    searchResults.appendChild(resultItem);
+                });
+            } else {
+                searchResults.innerHTML = '<p class="text-center text-white text-lg">Không tìm thấy kết quả phù hợp.</p>';
+            }
+        });
+
+// Reset khi xóa nội dung tìm kiếm
+document.getElementById('search-input').addEventListener('input', (e) => {
+    const searchResults = document.getElementById('search-results');
+    if (e.target.value.trim() === '') {
+        if (searchResults) {
+            searchResults.remove();
+        }
+    }
+});
+
+        // Debug: Kiểm tra videoData khi trang tải
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof videoData === 'undefined') {
+                console.error('videoData không được định nghĩa. Kiểm tra tệp videos.js.');
+            } else {
+                console.log('videoData đã tải thành công:', videoData);
+            }
+        });
     </script>
 </body>
 </html>
