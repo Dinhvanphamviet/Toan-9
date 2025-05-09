@@ -1,0 +1,318 @@
+/* Đặt màu nền mặc định cho body trong dark mode với gradient động */
+body {
+    background: linear-gradient(45deg, #075985, #075985);
+    background-size: 200% 200%;
+    animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Light mode styles */
+.light-mode {
+    background: #f0f9ff !important;
+    color: #1e3a8a;
+}
+.light-mode a {
+    color: #1e3a8a;
+}
+.light-mode .border-white {
+    border-color: #1e3a8a;
+}
+.light-mode .bg-sky-800 {
+    background: #f0f9ff !important;
+}
+.light-mode .text-white {
+    color: #1e40af;
+}
+.light-mode .text-sky-400 {
+    color: #1e40af;
+}
+.light-mode .bg-white {
+    background: #bfdbfe;
+}
+.light-mode .text-blue-400 {
+    color: #1e40af;
+}
+.light-mode .border-sky-400 {
+    border-color: #1e40af;
+}
+.light-mode .hover\:bg-sky-400:hover {
+    background: #1e40af;
+    color: #ffffff;
+}
+.light-mode .text-gray-400 {
+    color: #1e40af;
+}
+
+/* Theme toggle button */
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #38bdf8;
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.5rem;
+    border: 2px solid #ffffff;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+#theme-toggle:hover {
+    background: #1e40af;
+    border-color: #1e40af;
+    transform: scale(1.1);
+}
+.light-mode #theme-toggle {
+    background: #38bdf8;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+.light-mode #theme-toggle:hover {
+    background: #1e40af;
+    border-color: #1e40af;
+}
+
+/* Scroll to top button */
+#scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: #38bdf8;
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    font-size: 1.5rem;
+    border: 2px solid #ffffff;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+}
+#scroll-to-top.visible {
+    opacity: 0.8;
+    pointer-events: auto;
+}
+#scroll-to-top:hover {
+    background: #1e40af;
+    border-color: #1e40af;
+    transform: scale(1.1);
+    opacity: 1;
+}
+.light-mode #scroll-to-top {
+    background: #38bdf8;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+.light-mode #scroll-to-top:hover {
+    background: #1e40af;
+    border-color: #1e40af;
+}
+
+/* Hiệu ứng hover cho mục video */
+.video-item {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+.video-item:hover {
+    transform: scale(1.02);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.light-mode .video-item:hover {
+    background-color: rgba(30, 64, 175, 0.1);
+}
+
+/* Hiệu ứng pulse cho nút */
+.btn-pulse:hover {
+    animation: pulse 0.5s infinite alternate;
+}
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+#theme-toggle i {
+    transition: transform 0.3s ease;
+}
+#theme-toggle.toggling i {
+    transform: rotate(180deg);
+}
+.btn-pulse:hover {
+    animation: pulse 0.5s infinite alternate;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* Search bar styles */
+#search-form {
+    transition: all 0.3s ease;
+}
+
+#search-input {
+    border: 2px solid #38bdf8;
+    border-right: none;
+}
+
+#search-form button {
+    border: 2px solid #38bdf8;
+    border-left: none;
+}
+
+.light-mode #search-input {
+    background: #ffffff;
+    color: #1e40af;
+    border-color: #1e40af;
+}
+
+.light-mode #search-form button {
+    background: #38bdf8;
+    color: #ffffff;
+    border-color: #1e40af;
+}
+
+.light-mode #search-form button:hover {
+    background: #1e40af;
+}
+
+#search-input::placeholder {
+    color: #6b7280;
+}
+
+.light-mode #search-input::placeholder {
+    color: #1e40af;
+}
+
+/* Search results styles */
+#search-results {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+.light-mode #search-results {
+    background: rgba(30, 64, 175, 0.1);
+}
+.search-result-item {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ffffff;
+}
+.light-mode .search-result-item {
+    border-bottom: 1px solid #1e40af;
+}
+
+/* Hamburger menu styles */
+#hamburger {
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+.light-mode #hamburger {
+    color: #1e40af;
+}
+#hamburger:hover {
+    color: #38bdf8;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    max-width: 300px;
+    height: 100%;
+    background: #075985;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+    z-index: 1000;
+    padding: 2rem;
+}
+.mobile-menu.open {
+    transform: translateX(0);
+}
+.light-mode .mobile-menu {
+    background: #f0f9ff;
+}
+.mobile-menu a {
+    display: block;
+    padding: 1rem 0;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+.light-mode .mobile-menu a {
+    color: #1e40af;
+}
+.mobile-menu a:hover {
+    color: #38bdf8;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+#overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    #search-form {
+        max-width: 100%;
+    }
+}
+
+/* Slider styles */
+.slider-dot {
+    transition: all 0.3s ease;
+}
+.slider-dot.active {
+    background: #ffffff;
+    transform: scale(1.2);
+}
+
+.swiper-slide {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.swiper-button-next, 
+.swiper-button-prev {
+    color: #38bdf8 !important;
+    background: rgba(255,255,255,0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+}
+
+.swiper-button-next:after, 
+.swiper-button-prev:after {
+    font-size: 1.2rem !important;
+}
+
+.swiper-pagination-bullet {
+    background: #38bdf8 !important;
+}

@@ -246,3 +246,42 @@ const HinhhocSlider = new Swiper('.hinhhoc-slider', {
         1024: { slidesPerView: 3, spaceBetween: 20 },
     }
 });
+
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay = document.getElementById('overlay');
+
+// Toggle mobile menu and overlay
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    overlay.classList.toggle('active');
+
+    // Toggle icon between hamburger and X
+    const icon = hamburger.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
+
+// Close menu when clicking on the overlay
+overlay.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('active');
+
+    const icon = hamburger.querySelector('i');
+    icon.classList.add('fa-bars');
+    icon.classList.remove('fa-times');
+});
+
+// Close menu when clicking on a link
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        overlay.classList.remove('active');
+
+        const icon = hamburger.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+    });
+});
