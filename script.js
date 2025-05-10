@@ -285,3 +285,41 @@ mobileMenu.querySelectorAll('a').forEach(link => {
         icon.classList.remove('fa-times');
     });
 });
+
+
+// Thêm vào file script.js
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('header');
+  let lastScroll = 0;
+  const scrollThreshold = 100; // Khoảng cách cuộn trước khi ẩn header
+
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+    
+    // Nếu cuộn xuống quá ngưỡng và đang cuộn xuống
+    if (currentScroll > scrollThreshold && currentScroll > lastScroll) {
+      header.classList.add('hide-on-scroll');
+    } 
+    // Nếu cuộn lên hoặc lên đầu trang
+    else if (currentScroll < lastScroll || currentScroll <= scrollThreshold) {
+      header.classList.remove('hide-on-scroll');
+    }
+    
+    lastScroll = currentScroll;
+  });
+});
+
+
+let isScrolling;
+window.addEventListener('scroll', function() {
+  // Hủy timeout đang chờ
+  window.clearTimeout(isScrolling);
+  
+  // Ẩn header
+  header.classList.add('hide-on-scroll');
+  
+  // Sau khi dừng cuộn 66ms thì hiện lại header
+  isScrolling = setTimeout(function() {
+    header.classList.remove('hide-on-scroll');
+  }, 66);
+}, false);

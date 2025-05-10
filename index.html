@@ -36,10 +36,15 @@
     </div>
 
     <!-- Theme Toggle Button -->
-    <button id="theme-toggle" title="Chuyển đổi chủ đề" aria-label="Chuyển đổi giữa chế độ sáng và tối"><i class="fas fa-moon"></i></button>
+    <button id="theme-toggle" title="Chuyển đổi chủ đề" aria-label="Chuyển đổi giữa chế độ sáng và tối" class="flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:bg-gray-700">
+        <i class="fas fa-moon text-lg hidden" id="dark-icon"></i>
+        <i class="fas fa-sun text-lg hidden" id="light-icon"></i>
+    </button>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" title="Lên đầu trang" aria-label="Cuộn lên đầu trang"><i class="fas fa-arrow-up"></i></button>
+    <button id="scroll-to-top" title="Lên đầu trang" aria-label="Cuộn lên đầu trang" class="flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:bg-gray-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Header -->
     <header class="bg-sky-800 sticky top-0 z-10">
