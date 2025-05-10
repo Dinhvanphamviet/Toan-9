@@ -316,3 +316,144 @@ body {
 .swiper-pagination-bullet {
     background: #38bdf8 !important;
 }
+
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .contact-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            width: 50px;
+        }
+        .contact-item {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        .contact-item a {
+            text-decoration: none;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-item i, .contact-item img {
+            font-size: 25px;
+            margin-bottom: 3px;
+            transition: color 0.3s;
+        }
+        .contact-item img {
+            width: 25px;
+            height: 25px;
+        }
+        .contact-item span {
+            font-size: 10px;
+            white-space: nowrap;
+        }
+        /* Tùy chỉnh màu sắc cho icon */
+        .contact-item .fa-phone { color: #007bff; }
+        .contact-item .fa-facebook { color: #1877f2; }
+        .contact-item .fa-facebook-messenger { color: #0084ff; }
+        /* Hiệu ứng hover */
+        .contact-item:hover {
+            background-color: #f0f9ff;
+            transform: scale(1.1);
+        }
+        .contact-item:hover i {
+            color: #075985;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .contact-bar {
+                right: 10px;
+                bottom: 20px;
+                width: 60px;
+                border-radius: 50px;
+                padding: 10px 0;
+            }
+            .contact-item {
+                padding: 12px 0;
+                border-bottom: none;
+                border-radius: 50%;
+                margin: 5px 0;
+                background-color: #f8f9fa;
+            }
+            .contact-item:hover {
+                background-color: #e9ecef;
+            }
+            .contact-item a {
+                padding: 5px;
+            }
+            .contact-item i, .contact-item img {
+                font-size: 30px;
+            }
+            .contact-item img {
+                width: 30px;
+                height: 30px;
+            }
+            .contact-item span {
+                display: none;
+            }
+        }
+
+.stats-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .stats-box {
+            text-align: center;
+            width: 100px; /* Chiều rộng mỗi ô */
+        }
+        .stats-number {
+            background-color: #d1ecf1; /* Màu xanh nhạt cho phần số */
+            color: #075985; /* Màu chữ số */
+            font-size: 36px;
+            font-weight: bold;
+            padding: 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .stats-label {
+            background-color: #17a2b8; /* Màu xanh đậm cho phần chữ */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stats-box {
+                width: 80px; /* Giảm kích thước trên điện thoại */
+            }
+            .stats-number {
+                font-size: 30px;
+                padding: 8px;
+            }
+            .stats-label {
+                font-size: 16px;
+                padding: 4px;
+            }
+        }
