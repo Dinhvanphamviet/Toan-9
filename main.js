@@ -19,11 +19,20 @@ function setupThemeToggle() {
   const darkIcon = document.getElementById('dark-icon');
   const lightIcon = document.getElementById('light-icon');
 
-  // Kiểm tra theme từ localStorage
+  // Kiểm tra theme từ localStorage hoặc thiết lập light mode làm mặc định
+  if (!localStorage.getItem('theme')) {
+    localStorage.setItem('theme', 'light'); // Thiết lập mặc định là light mode
+  }
+
+  // Áp dụng theme đã lưu
   if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-mode');
     darkIcon.classList.add('hidden');
     lightIcon.classList.remove('hidden');
+  } else {
+    document.body.classList.remove('light-mode');
+    darkIcon.classList.remove('hidden');
+    lightIcon.classList.add('hidden');
   }
 
   themeToggle.addEventListener('click', () => {
@@ -408,4 +417,60 @@ document.addEventListener('DOMContentLoaded', function() {
   animateElements.forEach(el => {
     el.classList.add('animate__animated', 'animate__fadeIn');
   });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Lấy nút "Học Ngay" (sử dụng selector chính xác hơn)
+  const hocNgayBtn = document.querySelector('button.bg-blue-500.hover\\:bg-blue-700.text-white.font-bold.py-3.px-6.rounded-full');
+  
+  if (hocNgayBtn) {
+    hocNgayBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // 1. Thêm hiệu ứng nhấn nút
+      this.classList.add('animate-click');
+      setTimeout(() => this.classList.remove('animate-click'), 200);
+      
+      // 2. Chuyển sang tab Đề cương nếu chưa active
+      const curriculumTab = document.getElementById('curriculum-tab');
+      const descriptionTab = document.getElementById('description-tab');
+      
+      if (curriculumTab && !curriculumTab.classList.contains('text-blue-800')) {
+        // Kích hoạt tab Đề cương
+        curriculumTab.classList.remove('text-gray-500', 'border-transparent');
+        curriculumTab.classList.add('text-blue-800', 'border-blue-800');
+        
+        descriptionTab.classList.remove('text-blue-800', 'border-blue-800');
+        descriptionTab.classList.add('text-gray-500', 'border-transparent');
+        
+        // Ẩn nội dung mô tả, hiện nội dung đề cương
+        document.getElementById('description-content').classList.add('hidden');
+        document.getElementById('curriculum-content').classList.remove('hidden');
+      }
+      
+      // 3. Cuộn lên đầu trang trước
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // 4. Sau đó cuộn đến phần đề cương (với delay nhỏ)
+      setTimeout(() => {
+        const deCuongSection = document.getElementById('curriculum-content');
+        if (deCuongSection) {
+          deCuongSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Thêm hiệu ứng highlight
+          deCuongSection.style.transition = 'all 0.5s ease';
+          deCuongSection.style.boxShadow = '0 0 0 4px rgba(59, 130, 246, 0.5)';
+          setTimeout(() => {
+            deCuongSection.style.boxShadow = 'none';
+          }, 2000);
+        }
+      }, 500); // Delay để đảm bảo cuộn lên đầu trang hoàn tất
+    });
+  }
 });

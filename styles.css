@@ -3,11 +3,11 @@
   /* Dark Mode Colors */
   --primary-color: #075985;
   --secondary-color: #38bdf8;
-  --accent-color: #1e40af;
+  --accent-color: #ffffff;
   --bg-color: linear-gradient(45deg, #075985, #075985);
-  --bg-secondary: rgba(255, 255, 255, 0.1);
+  --bg-secondary: rgba(255, 12, 12, 0.1);
   --text-color: #ffffff;
-  --text-secondary: #6b7280;
+  --text-secondary: #ffffff;
   --border-color: #ffffff;
   --card-bg: #075985;
   --hover-bg: rgba(255, 255, 255, 0.1);
@@ -539,3 +539,18 @@ header.hide-on-scroll {
 main {
   margin-top: 80px; /* Điều chỉnh theo chiều cao thực tế của header */
 }
+
+/* Thêm vào file styles.css */
+.animate-click {
+  animation: clickEffect 0.2s ease-out;
+  transform: scale(0.95);
+}
+
+@keyframes clickEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+
+
