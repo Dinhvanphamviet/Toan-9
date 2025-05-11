@@ -6,19 +6,42 @@
     <title>Khóa học Đại Số | STEP 1. START UP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body class="">
-
     <!-- Theme Toggle Button -->
     <button id="theme-toggle" title="Chuyển đổi chủ đề" aria-label="Chuyển đổi giữa chế độ sáng và tối" class="flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:bg-gray-700">
         <i class="fas fa-moon text-lg hidden" id="dark-icon"></i>
         <i class="fas fa-sun text-lg hidden" id="light-icon"></i>
     </button>
 
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" title="Lên đầu trang" aria-label="Cuộn lên đầu trang" class="flex items-center justify-center w-12 h-12 bg-gray-800 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:bg-gray-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-item">
+            <a href="tel:326661401" target="_blank">
+                <i class="fas fa-phone"></i>
+            </a>
+        </div>
+        <div class="contact-item">
+            <a href="http://zaloapp.com/qr/p/103b29ogmo8ml" target="_blank">
+                <img src="https://img.icons8.com/color/48/000000/zalo.png" alt="Zalo">
+            </a>
+        </div>
+        <div class="contact-item">
+            <a href="https://www.facebook.com/tolavietdayahihi" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
+    </div>
+
     <!-- Header -->
-     <!-- Header -->
     <header class="bg-sky-800 sticky top-0 z-10">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 font-sans text-white">
             <div class="flex flex-col space-y-4">
@@ -61,18 +84,21 @@
         <div id="overlay"></div>
     </header>
 
-    <div class="container mx-auto px-4 py-6 max-w-6xl">
-        <!-- Breadcrumb -->
-        <div class="text-sm mb-6">
-            <a href="#" class="text-blue-600 hover:underline">TRANG CHỦ</a> &gt; 
-            <a href="#" class="text-blue-600 hover:underline">BON 12 2025</a> &gt; 
-            <span class="font-medium">STEP 1. START UP</span>
+        <div class="container mx-auto px-4 py-6 max-w-6xl">
+            <div class="bg-gray-100 border-white rounded-md px-4 py-2 mb-6">
+        <div class="flex items-center space-x-2 text-sm">
+                <a href="#" class="text-blue-600 hover:underline">TRANG CHỦ</a>
+                <span class="text-gray-400">></span>
+                <a href="#" class="text-blue-600 hover:underline">BON 12 2025</a>
+                <span class="text-gray-400">></span>
+                <span class="font-medium text-gray-800">STEP 2. EXPLORER</span>
+            </div>
         </div>
 
         <!-- Course Header with YouTube Video -->
         <div class="card rounded-lg shadow-md overflow-hidden mb-6">
             <!-- Video Type Selector -->
-            <div class="flex border-b">
+            <div class="flex border-b" id="video-type-selector">
                 <button id="main-lesson-btn" class="video-type-btn flex-1 py-2 font-medium active" data-type="main">
                     <i class="fas fa-chalkboard-teacher mr-2"></i>Bài giảng chính
                 </button>
@@ -111,24 +137,26 @@
                         <span>Đinh Việt</span>
                     </div>
 
+                    <!--
                     <div class="flex space-x-2">
                         <button class="bg-blue-100 px-4 py-2 rounded-md text-sm font-medium">
-                            <i class="fas fa-volume-up mr-2"></i>Nhấn đề bật tiếng
+                            <i class="fas fa-volume-up mr-2"></i>Nhấn để bật tiếng
                         </button>
                         <button class="bg-gray-100 px-4 py-2 rounded-md text-sm font-medium">
                             <i class="fas fa-share-alt mr-2"></i>Chia sẻ
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
 
         <!-- Tabs -->
         <div class="flex border-b mb-6">
-            <button id="description-tab" class="tab-button px-4 py-2 font-medium border-b-2" data-target="description-content">
+            <button id="description-tab" class="tab-button px-4 py-2 font-medium border-b-2 border-blue-800 text-blue-800" data-target="description-content">
                 Mô tả khóa học
             </button>
-            <button id="curriculum-tab" class="tab-button px-4 py-2 font-medium" data-target="curriculum-content">
+            <button id="curriculum-tab" class="tab-button px-4 py-2 font-medium text-gray-500" data-target="curriculum-content">
                 Đề cương khóa học
             </button>
         </div>
@@ -189,19 +217,18 @@
                             </button>
                             
                             <div class="theme-detail mt-2 pl-2 hidden">
-                                <div class="space-y-2 mt-2">
-                                    <div class="flex items-center space-x-2 cursor-pointer video-item"
+                                <div class="space-y-2 mt-2 w-full">
+                                    <div class="flex items-center space-x-2 py-1 cursor-pointer video-item"
                                          data-video="rcfGl1e3KEg"
                                          data-type="main"
                                          data-title="Bài giảng chính: Sự đồng biến, nghịch biến của hàm số">
                                         <i class="fas fa-video text-green-600 w-6 text-center"></i>
                                         <span class="flex-1">Bài giảng chính</span>
                                     </div>
-                                    
-                                    <div class="flex items-center space-x-2">
+                                    <a href="https://drive.google.com/file/d/1a2b3c4d5e6f7g8h9i0j/view" class="flex items-center space-x-2 py-1 cursor-pointer pdf-item" data-video="rcfGl1e3KEg" target="_blank">
                                         <i class="far fa-file-pdf text-blue-600 w-6 text-center"></i>
                                         <span class="flex-1">Tài liệu PDF</span>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -217,25 +244,25 @@
                             </button>
                             
                             <div class="theme-detail mt-2 pl-2 hidden">
-                                <div class="space-y-2 mt-2">
-                                    <div class="flex items-center space-x-2 cursor-pointer video-item"
+                                <div class="space-y-2 mt-2 w-full">
+                                    <div class="flex items-center space-x-2 py-1 cursor-pointer video-item"
                                          data-video="9bZkp7q19f0"
                                          data-type="main"
                                          data-title="Bài giảng chính: Cực trị của hàm số">
                                         <i class="fas fa-video text-green-600 w-6 text-center"></i>
                                         <span class="flex-1">Bài giảng chính</span>
                                     </div>
-                                    <div class="flex items-center space-x-2 cursor-pointer video-item"
+                                    <div class="flex items-center space-x-2 py-1 cursor-pointer video-item"
                                          data-video="kJQP7kiw5Fk"
                                          data-type="exercise"
                                          data-title="Chữa bài tập: Cực trị của hàm số">
                                         <i class="fas fa-tasks text-yellow-600 w-6 text-center"></i>
                                         <span class="flex-1">Chữa bài tập rèn luyện</span>
                                     </div>
-                                    <div class="flex items-center space-x-2">
+                                    <a href="https://drive.google.com/file/d/2b3c4d5e6f7g8h9i0j1k/view" class="flex items-center space-x-2 py-1 cursor-pointer pdf-item" data-video="9bZkp7q19f0" target="_blank">
                                         <i class="far fa-file-pdf text-blue-600 w-6 text-center"></i>
                                         <span class="flex-1">Tài liệu PDF</span>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -266,25 +293,25 @@
                             </button>
                             
                             <div class="theme-detail mt-2 pl-2 hidden">
-                                <div class="space-y-2 mt-2">
-                                    <div class="flex items-center space-x-2 cursor-pointer video-item"
+                                <div class="space-y-2 mt-2 w-full">
+                                    <div class="flex items-center space-x-2 py-1 cursor-pointer video-item"
                                          data-video="JGwWNGJdvx8"
                                          data-type="main"
                                          data-title="Bài giảng chính: Lũy thừa với số mũ hữu tỉ">
                                         <i class="fas fa-video text-green-600 w-6 text-center"></i>
                                         <span class="flex-1">Bài giảng chính</span>
                                     </div>
-                                    <div class="flex items-center space-x-2 cursor-pointer video-item"
+                                    <div class="flex items-center space-x-2 py-1 cursor-pointer video-item"
                                          data-video="OPf27YVjUYs"
                                          data-type="exercise"
                                          data-title="Chữa bài tập: Lũy thừa với số mũ hữu tỉ">
                                         <i class="fas fa-tasks text-yellow-600 w-6 text-center"></i>
                                         <span class="flex-1">Chữa bài tập rèn luyện</span>
                                     </div>
-                                    <div class="flex items-center space-x-2">
+                                    <a href="https://drive.google.com/file/d/3c4d5e6f7g8h9i0j1k2l/view" class="flex items-center space-x-2 py-1 cursor-pointer pdf-item" data-video="JGwWNGJdvx8" target="_blank">
                                         <i class="far fa-file-pdf text-blue-600 w-6 text-center"></i>
                                         <span class="flex-1">Tài liệu PDF</span>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -302,316 +329,369 @@
         </div>
     </div>
 
+    <!-- Embedded JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching functionality
-    const tabs = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const videoTypeSelector = document.querySelector('.flex.border-b');
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const videoTypeSelector = document.getElementById('video-type-selector');
+            const videoIframe = document.getElementById('course-video');
+            const videoLoading = document.getElementById('video-loading');
+            const mainLessonBtn = document.getElementById('main-lesson-btn');
+            const exerciseBtn = document.getElementById('exercise-btn');
+            const videoTypeTitle = document.getElementById('video-type-title');
+            const headerOffset = 100;
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            tabs.forEach(t => {
-                t.classList.remove('text-blue-800', 'border-blue-800');
-                t.classList.add('text-gray-500', 'border-transparent');
-            });
+            // List of free videos (first two videos)
+            const freeVideos = ['rcfGl1e3KEg', '9bZkp7q19f0'];
 
-            this.classList.remove('text-gray-500', 'border-transparent');
-            this.classList.add('text-blue-800', 'border-blue-800');
+            // Modal for key input
+            const keyModal = document.createElement('div');
+            keyModal.id = 'key-modal';
+            keyModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50';
+            keyModal.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+                    <h2 class="text-xl font-bold mb-4">Yêu cầu nhập KEY</h2>
+                    <p class="mb-4">Tài liệu hoặc video này yêu cầu KEY. Vui lòng nhập KEY để tiếp tục.</p>
+                    <input type="text" id="key-input" class="w-full px-3 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Nhập KEY của bạn">
+                    <div class="flex justify-end space-x-2">
+                        <button id="cancel-key" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Hủy</button>
+                        <button id="submit-key" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Xác nhận</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(keyModal);
 
-            tabContents.forEach(content => {
-                content.classList.add('hidden');
-            });
+            // Modal control
+            const showModal = () => keyModal.classList.remove('hidden');
+            const hideModal = () => keyModal.classList.add('hidden');
 
-            const targetId = this.getAttribute('data-target');
-            document.getElementById(targetId).classList.remove('hidden');
-            
-            videoTypeSelector.classList.add('hidden');
-            showIntroVideo();
-        });
-    });
-
-    function showIntroVideo() {
-        videoIframe.src = `https://www.youtube.com/embed/LWw1GYTMvjQ?autoplay=1&rel=0&modestbranding=1&controls=1&fs=1&disablekb=1&iv_load_policy=3`;
-        document.getElementById('course-title').textContent = 'ĐẠI SỐ';
-        document.getElementById('chapter-theme-title').classList.add('hidden');
-        document.getElementById('video-type-title').classList.add('hidden');
-    }
-
-    // Function to update chapter height with smooth transition
-    function updateChapterHeight(chapterContent) {
-        if (chapterContent) {
-            // Temporarily remove transition for instant height calculation
-            chapterContent.style.transition = 'none';
-            chapterContent.style.maxHeight = chapterContent.scrollHeight + 'px';
-            
-            // Restore transition after height is set
-            setTimeout(() => {
-                chapterContent.style.transition = 'max-height 0.3s ease-out';
-            }, 10);
-        }
-    }
-
-    // Chapter toggle functionality with improved animation
-    const chapterToggles = document.querySelectorAll('.chapter-toggle');
-    chapterToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector('i');
-            
-            // Toggle content with smooth animation
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-                updateChapterHeight(content);
-            } else {
-                content.style.maxHeight = null;
-                setTimeout(() => {
-                    content.classList.add('hidden');
-                }, 300); // Match this with CSS transition duration
-                icon.classList.remove('rotate-180');
-            }
-        });
-    });
-
-    // Theme toggle functionality
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    const videoIframe = document.getElementById('course-video');
-    const videoLoading = document.getElementById('video-loading');
-    const headerOffset = 100;
-    const mainLessonBtn = document.getElementById('main-lesson-btn');
-    const exerciseBtn = document.getElementById('exercise-btn');
-    const videoTypeTitle = document.getElementById('video-type-title');
-    
-    let currentVideoState = {
-        videoId: '',
-        themeTitle: '',
-        chapterTitle: '',
-        videoType: 'main',
-        isThemeSelected: false
-    };
-    
-    function expandParentChapter(themeElement) {
-        const chapterContent = themeElement.closest('.chapter-content');
-        if (chapterContent && chapterContent.classList.contains('hidden')) {
-            const chapterToggle = chapterContent.previousElementSibling;
-            chapterContent.classList.remove('hidden');
-            chapterToggle.querySelector('i').classList.add('rotate-180');
-            updateChapterHeight(chapterContent);
-        }
-    }
-    
-    function changeVideo(videoId, themeTitle, chapterTitle, videoType, isThemeSelected) {
-        try {
-            videoLoading.classList.remove('hidden');
-            videoIframe.src = '';
-            
-            currentVideoState = {
-                videoId,
-                themeTitle,
-                chapterTitle,
-                videoType,
-                isThemeSelected
+            // Object to store the current video state
+            let currentVideoState = {
+                videoId: '',
+                themeTitle: '',
+                chapterTitle: '',
+                videoType: 'main',
+                isThemeSelected: false
             };
-            
-            if (isThemeSelected) {
-                videoTypeSelector.classList.remove('hidden');
-                updateVideoTypeUI(videoType);
-                
-                document.getElementById('course-title').textContent = themeTitle;
-                const chapterThemeTitle = document.getElementById('chapter-theme-title');
-                chapterThemeTitle.textContent = chapterTitle;
-                chapterThemeTitle.classList.remove('hidden');
-                
-                videoTypeTitle.textContent = videoType === 'main' ? 'Bài giảng chính' : 'Chữa bài tập rèn luyện';
-                videoTypeTitle.classList.remove('hidden');
-            } else {
-                videoTypeSelector.classList.add('hidden');
+
+            // Function to show the intro video
+            function showIntroVideo() {
+                videoIframe.src = `https://www.youtube.com/embed/LWw1GYTMvjQ?autoplay=1&rel=0&modestbranding=1&controls=1&fs=1&disablekb=1&iv_load_policy=3`;
+                document.getElementById('course-title').textContent = 'ĐẠI SỐ';
                 document.getElementById('chapter-theme-title').classList.add('hidden');
                 document.getElementById('video-type-title').classList.add('hidden');
+                videoTypeSelector.classList.add('hidden');
             }
-            
-            videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&fs=1&disablekb=1&iv_load_policy=3`;
-            
-            videoIframe.onload = function() {
-                videoLoading.classList.add('hidden');
-                if (isThemeSelected) {
+
+            // Function to update chapter height with smooth transition
+            function updateChapterHeight(chapterContent) {
+                if (chapterContent) {
+                    chapterContent.style.transition = 'none';
+                    chapterContent.style.maxHeight = chapterContent.scrollHeight + 'px';
                     setTimeout(() => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    }, 300);
+                        chapterContent.style.transition = 'max-height 0.3s ease-out';
+                    }, 10);
                 }
-            };
-        } catch (error) {
-            console.error('Error changing video:', error);
-            videoLoading.classList.add('hidden');
-        }
-    }
-    
-    function updateVideoTypeUI(videoType) {
-        if (videoType === 'main') {
-            mainLessonBtn.classList.add('active');
-            exerciseBtn.classList.remove('active');
-        } else {
-            mainLessonBtn.classList.remove('active');
-            exerciseBtn.classList.add('active');
-        }
-    }
-    
-    // Improved theme toggle events with better chapter height handling
-    themeToggles.forEach(toggle => {
-        if (toggle.id !== 'theme-toggle') {
-            toggle.addEventListener('click', function(event) {
-                const clickedElement = event.target;
-                const themeItem = this.closest('.theme-item');
-                const detail = themeItem.querySelector('.theme-detail');
-                const icon = this.querySelector('i');
-                const chapterContent = themeItem.closest('.chapter-content');
-                
-                // Expand parent chapter if needed
-                expandParentChapter(themeItem);
-                
-                if (clickedElement === this || clickedElement.closest('span') === this.querySelector('span')) {
-                    const themeTitle = this.getAttribute('data-theme');
-                    const chapterTitle = this.closest('.chapter-content').previousElementSibling.querySelector('.chapter-title').textContent;
-                    
-                    const mainVideoItem = themeItem.querySelector('.video-item[data-type="main"]');
-                    if (mainVideoItem) {
-                        const videoId = mainVideoItem.getAttribute('data-video');
-                        
-                        // First expand the theme detail
-                        if (detail.classList.contains('hidden')) {
-                            detail.classList.remove('hidden');
-                            icon.classList.add('rotate-180');
-                            detail.style.maxHeight = detail.scrollHeight + 'px';
-                            
-                            // Update chapter height after detail is expanded
-                            updateChapterHeight(chapterContent);
-                            
-                            setTimeout(() => {
-                                changeVideo(videoId, themeTitle, chapterTitle, 'main', true);
-                            }, 100);
-                        } else {
-                            // If already expanded, just change the video
-                            changeVideo(videoId, themeTitle, chapterTitle, 'main', true);
-                        }
+            }
+
+            // Tab switching functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Reset styles for all tabs
+                    tabs.forEach(t => {
+                        t.classList.remove('text-blue-800', 'border-blue-800');
+                        t.classList.add('text-gray-500', 'border-transparent');
+                    });
+
+                    // Highlight the clicked tab
+                    this.classList.remove('text-gray-500', 'border-transparent');
+                    this.classList.add('text-blue-800', 'border-blue-800');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Show the content corresponding to the clicked tab
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
                     }
+
+                    // If switching to description tab, show intro video and hide video type selector
+                    if (targetId === 'description-content') {
+                        videoTypeSelector.classList.add('hidden');
+                        showIntroVideo();
+                    } else if (targetId === 'curriculum-content') {
+                        videoTypeSelector.classList.add('hidden'); // Hide on initial curriculum tab click
+                        showIntroVideo(); // Reset to intro video
+                    }
+                });
+            });
+
+            // Chapter toggle functionality
+            const chapterToggles = document.querySelectorAll('.chapter-toggle');
+            chapterToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.classList.add('rotate-180');
+                        updateChapterHeight(content);
+                    } else {
+                        content.style.maxHeight = null;
+                        setTimeout(() => {
+                            content.classList.add('hidden');
+                        }, 300);
+                        icon.classList.remove('rotate-180');
+                    }
+                });
+            });
+
+            // Function to expand the parent chapter of a theme
+            function expandParentChapter(themeElement) {
+                const chapterContent = themeElement.closest('.chapter-content');
+                if (chapterContent && chapterContent.classList.contains('hidden')) {
+                    const chapterToggle = chapterContent.previousElementSibling;
+                    chapterContent.classList.remove('hidden');
+                    chapterToggle.querySelector('i').classList.add('rotate-180');
+                    updateChapterHeight(chapterContent);
+                }
+            }
+
+            // Function to check if video is free
+            function isVideoFree(videoId) {
+                return freeVideos.includes(videoId);
+            }
+
+            // Function to check if content is unlocked
+            function isContentUnlocked() {
+                return localStorage.getItem('contentUnlocked') === 'true';
+            }
+
+            // Function to unlock content
+            function unlockContent() {
+                localStorage.setItem('contentUnlocked', 'true');
+            }
+
+            // Function to change the video
+            function changeVideo(videoId, themeTitle, chapterTitle, videoType, isThemeSelected) {
+                try {
+                    if (!isVideoFree(videoId) && !isContentUnlocked()) {
+                        showModal();
+                        document.getElementById('submit-key').onclick = () => {
+                            const key = document.getElementById('key-input').value;
+                            if (key === 'valid-key') { // Replace with actual key validation
+                                unlockContent();
+                                hideModal();
+                                loadVideo(videoId, themeTitle, chapterTitle, videoType, isThemeSelected);
+                            } else {
+                                alert('KEY không hợp lệ!');
+                            }
+                        };
+                        document.getElementById('cancel-key').onclick = hideModal;
+                        return;
+                    }
+                    loadVideo(videoId, themeTitle, chapterTitle, videoType, isThemeSelected);
+                } catch (error) {
+                    console.error('Error changing video:', error);
+                    videoLoading.classList.add('hidden');
+                }
+            }
+
+            // Function to load the video
+            function loadVideo(videoId, themeTitle, chapterTitle, videoType, isThemeSelected) {
+                videoLoading.classList.remove('hidden');
+                videoIframe.src = '';
+                currentVideoState = { videoId, themeTitle, chapterTitle, videoType, isThemeSelected };
+                if (isThemeSelected) {
+                    videoTypeSelector.classList.remove('hidden'); // Show only when theme is selected
+                    updateVideoTypeUI(videoType);
+                    document.getElementById('course-title').textContent = themeTitle;
+                    const chapterThemeTitle = document.getElementById('chapter-theme-title');
+                    chapterThemeTitle.textContent = chapterTitle;
+                    chapterThemeTitle.classList.remove('hidden');
+                    videoTypeTitle.textContent = videoType === 'main' ? 'Bài giảng chính' : 'Chữa bài tập rèn luyện';
+                    videoTypeTitle.classList.remove('hidden');
                 } else {
-                    // Toggle theme detail
+                    videoTypeSelector.classList.add('hidden');
+                    document.getElementById('chapter-theme-title').classList.add('hidden');
+                    document.getElementById('video-type-title').classList.add('hidden');
+                }
+                videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&fs=1&disablekb=1&iv_load_policy=3`;
+                videoIframe.onload = function() {
+                    videoLoading.classList.add('hidden');
+                    if (isThemeSelected) {
+                        setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 300);
+                    }
+                };
+            }
+
+            // Function to update the video type UI
+            function updateVideoTypeUI(videoType) {
+                if (videoType === 'main') {
+                    mainLessonBtn.classList.add('active');
+                    exerciseBtn.classList.remove('active');
+                } else {
+                    mainLessonBtn.classList.remove('active');
+                    exerciseBtn.classList.add('active');
+                }
+            }
+
+            // Theme toggle functionality
+            const themeToggles = document.querySelectorAll('.theme-toggle');
+            themeToggles.forEach(toggle => {
+                if (toggle.id !== 'theme-toggle') {
+                    toggle.addEventListener('click', function(event) {
+                        const clickedElement = event.target;
+                        const themeItem = this.closest('.theme-item');
+                        const detail = themeItem.querySelector('.theme-detail');
+                        const icon = this.querySelector('i');
+                        const chapterContent = themeItem.closest('.chapter-content');
+                        expandParentChapter(themeItem);
+                        if (clickedElement === this || clickedElement.closest('span') === this.querySelector('span')) {
+                            const themeTitle = this.getAttribute('data-theme');
+                            const chapterTitle = this.closest('.chapter-content').previousElementSibling.querySelector('.chapter-title').textContent;
+                            const mainVideoItem = themeItem.querySelector('.video-item[data-type="main"]');
+                            if (mainVideoItem) {
+                                const videoId = mainVideoItem.getAttribute('data-video');
+                                if (detail.classList.contains('hidden')) {
+                                    detail.classList.remove('hidden');
+                                    icon.classList.add('rotate-180');
+                                    detail.style.maxHeight = detail.scrollHeight + 'px';
+                                    updateChapterHeight(chapterContent);
+                                    setTimeout(() => {
+                                        changeVideo(videoId, themeTitle, chapterTitle, 'main', true);
+                                    }, 100);
+                                } else {
+                                    changeVideo(videoId, themeTitle, chapterTitle, 'main', true);
+                                }
+                            }
+                        } else {
+                            if (detail.classList.contains('hidden')) {
+                                detail.classList.remove('hidden');
+                                icon.classList.add('rotate-180');
+                                detail.style.maxHeight = detail.scrollHeight + 'px';
+                                updateChapterHeight(chapterContent);
+                                setTimeout(() => {
+                                    const elementPosition = this.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                                }, 100);
+                            } else {
+                                detail.style.maxHeight = null;
+                                setTimeout(() => {
+                                    detail.classList.add('hidden');
+                                    icon.classList.remove('rotate-180');
+                                    updateChapterHeight(chapterContent);
+                                }, 300);
+                            }
+                        }
+                    });
+                }
+            });
+
+            // Video item click handler
+            document.querySelectorAll('.video-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video');
+                    const videoType = this.getAttribute('data-type');
+                    const themeItem = this.closest('.theme-item');
+                    const themeTitle = themeItem.querySelector('.theme-toggle').getAttribute('data-theme');
+                    const chapterTitle = themeItem.closest('.chapter-content').previousElementSibling.querySelector('.chapter-title').textContent;
+                    const chapterContent = themeItem.closest('.chapter-content');
+                    const detail = themeItem.querySelector('.theme-detail');
+                    if (chapterContent.classList.contains('hidden')) {
+                        chapterContent.classList.remove('hidden');
+                        chapterContent.previousElementSibling.querySelector('i').classList.add('rotate-180');
+                        updateChapterHeight(chapterContent);
+                    }
                     if (detail.classList.contains('hidden')) {
                         detail.classList.remove('hidden');
-                        icon.classList.add('rotate-180');
+                        themeItem.querySelector('.theme-toggle i').classList.add('rotate-180');
                         detail.style.maxHeight = detail.scrollHeight + 'px';
-                        
-                        // Update chapter height after detail is expanded
                         updateChapterHeight(chapterContent);
-                        
-                        setTimeout(() => {
-                            const elementPosition = this.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: 'smooth'
-                            });
-                        }, 100);
-                    } else {
-                        detail.style.maxHeight = null;
-                        setTimeout(() => {
-                            detail.classList.add('hidden');
-                            icon.classList.remove('rotate-180');
-                            updateChapterHeight(chapterContent);
-                        }, 300);
+                    }
+                    changeVideo(videoId, themeTitle, chapterTitle, videoType, true);
+                });
+            });
+
+            // PDF item click handler
+            document.querySelectorAll('.pdf-item').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    const videoId = this.getAttribute('data-video');
+                    const pdfUrl = this.getAttribute('href');
+                    if (!isVideoFree(videoId) && !isContentUnlocked()) {
+                        event.preventDefault();
+                        showModal();
+                        document.getElementById('submit-key').onclick = () => {
+                            const key = document.getElementById('key-input').value;
+                            if (key === 'valid-key') { // Replace with actual key validation
+                                unlockContent();
+                                hideModal();
+                                window.open(pdfUrl, '_blank');
+                            } else {
+                                alert('KEY không hợp lệ!');
+                            }
+                        };
+                        document.getElementById('cancel-key').onclick = hideModal;
+                    }
+                });
+            });
+
+            // Handle main lesson button click
+            mainLessonBtn.addEventListener('click', function() {
+                if (currentVideoState.videoId && currentVideoState.isThemeSelected) {
+                    const currentTheme = document.querySelector(`.theme-toggle[data-theme="${currentVideoState.themeTitle}"]`);
+                    if (currentTheme) {
+                        const themeItem = currentTheme.closest('.theme-item');
+                        const mainVideoItem = themeItem.querySelector('.video-item[data-type="main"]');
+                        if (mainVideoItem) {
+                            const videoId = mainVideoItem.getAttribute('data-video');
+                            changeVideo(videoId, currentVideoState.themeTitle, currentVideoState.chapterTitle, 'main', true);
+                        }
                     }
                 }
             });
-        }
-    });
-    
-    // Video item click handler with smooth expansion
-    document.querySelectorAll('.video-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const videoId = this.getAttribute('data-video');
-            const videoType = this.getAttribute('data-type');
-            const themeItem = this.closest('.theme-item');
-            const themeTitle = themeItem.querySelector('.theme-toggle').getAttribute('data-theme');
-            const chapterTitle = themeItem.closest('.chapter-content').previousElementSibling.querySelector('.chapter-title').textContent;
-            const chapterContent = themeItem.closest('.chapter-content');
-            const detail = themeItem.querySelector('.theme-detail');
-            
-            // Ensure parent chapter is expanded
-            if (chapterContent.classList.contains('hidden')) {
-                chapterContent.classList.remove('hidden');
-                chapterContent.previousElementSibling.querySelector('i').classList.add('rotate-180');
-                updateChapterHeight(chapterContent);
-            }
-            
-            // Ensure theme detail is expanded
-            if (detail.classList.contains('hidden')) {
-                detail.classList.remove('hidden');
-                themeItem.querySelector('.theme-toggle i').classList.add('rotate-180');
-                detail.style.maxHeight = detail.scrollHeight + 'px';
-                updateChapterHeight(chapterContent);
-            }
-            
-            changeVideo(videoId, themeTitle, chapterTitle, videoType, true);
-        });
-    });
-    
-    mainLessonBtn.addEventListener('click', function() {
-        if (currentVideoState.videoId && currentVideoState.isThemeSelected) {
-            const currentTheme = document.querySelector(`.theme-toggle[data-theme="${currentVideoState.themeTitle}"]`);
-            if (currentTheme) {
-                const themeItem = currentTheme.closest('.theme-item');
-                const mainVideoItem = themeItem.querySelector('.video-item[data-type="main"]');
-                if (mainVideoItem) {
-                    const videoId = mainVideoItem.getAttribute('data-video');
-                    changeVideo(videoId, currentVideoState.themeTitle, currentVideoState.chapterTitle, 'main', true);
-                }
-            }
-        }
-    });
-    
-    exerciseBtn.addEventListener('click', function() {
-        if (currentVideoState.videoId && currentVideoState.isThemeSelected) {
-            const currentTheme = document.querySelector(`.theme-toggle[data-theme="${currentVideoState.themeTitle}"]`);
-            if (currentTheme) {
-                const themeItem = currentTheme.closest('.theme-item');
-                const exerciseVideoItem = themeItem.querySelector('.video-item[data-type="exercise"]');
-                if (exerciseVideoItem) {
-                    const videoId = exerciseVideoItem.getAttribute('data-video');
-                    changeVideo(videoId, currentVideoState.themeTitle, currentVideoState.chapterTitle, 'exercise', true);
-                }
-            }
-        }
-    });
-    
-    // Activate the first tab by default
-    document.getElementById('description-tab').click();
-    videoTypeSelector.classList.add('hidden');
-    
-    // Initialize first chapter and theme
-    const firstChapter = document.querySelector('.chapter-content');
-    if (firstChapter) {
-        // Don't expand first chapter by default
-        firstChapter.classList.add('hidden');
-        firstChapter.style.maxHeight = null;
-        document.querySelector('.chapter-toggle i').classList.remove('rotate-180');
-    }
-    
-    showIntroVideo();
-    
-});
-    </script>
 
-    
+            // Handle exercise button click
+            exerciseBtn.addEventListener('click', function() {
+                if (currentVideoState.videoId && currentVideoState.isThemeSelected) {
+                    const currentTheme = document.querySelector(`.theme-toggle[data-theme="${currentVideoState.themeTitle}"]`);
+                    if (currentTheme) {
+                        const themeItem = currentTheme.closest('.theme-item');
+                        const exerciseVideoItem = themeItem.querySelector('.video-item[data-type="exercise"]');
+                        if (exerciseVideoItem) {
+                            const videoId = exerciseVideoItem.getAttribute('data-video');
+                            changeVideo(videoId, currentVideoState.themeTitle, currentVideoState.chapterTitle, 'exercise', true);
+                        }
+                    }
+                }
+            });
+
+            // Initialize first chapter
+            const firstChapter = document.querySelector('.chapter-content');
+            if (firstChapter) {
+                firstChapter.classList.add('hidden');
+                firstChapter.style.maxHeight = null;
+                document.querySelector('.chapter-toggle i').classList.remove('rotate-180');
+            }
+
+            // Show the intro video
+            showIntroVideo();
+        });
+    </script>
 
     <!-- Nhúng footer.html -->
     <iframe src="footer.html" class="w-full border-0" style="min-height: 250px;" scrolling="no" onload="this.style.height=(this.contentWindow.document.body.scrollHeight)+'px';"></iframe>
-    <!-- JavaScript for Theme Toggle, Scroll to Top, Animations, and Search -->
-    <script src="script.js"></script>
 
-    
+    <!-- JavaScript for Theme Toggle, Scroll to Top, Animations, and Search -->
+    <script src="main.js"></script>
 </body>
 </html>
