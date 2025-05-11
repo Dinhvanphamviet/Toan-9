@@ -298,6 +298,8 @@ body {
   cursor: not-allowed;
 }
 
+
+
 /* Video item hover effects */
 .video-item {
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -309,6 +311,21 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .light-mode .video-item:hover {
+  background-color: rgba(30, 64, 175, 0.1);
+}
+
+
+/* pdf item hover effects */
+.pdf-item {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+.pdf-item:hover {
+  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.light-mode .pdf-item:hover {
   background-color: rgba(30, 64, 175, 0.1);
 }
 

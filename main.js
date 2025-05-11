@@ -64,13 +64,18 @@ function setupHeaderScroll() {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll <= 0) {
+      // Khi ở đầu trang - luôn hiện header
       header.classList.remove('hide-on-scroll');
     } 
-    else if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
-      header.classList.add('hide-on-scroll');
+    else if (currentScroll > lastScroll) {
+      // Khi cuộn XUỐNG - ẩn header ngay khi vượt qua ngưỡng
+      if (currentScroll > scrollThreshold) {
+        header.classList.add('hide-on-scroll');
+      }
     } 
-    else if (currentScroll < lastScroll) {
-      header.classList.remove('hide-on-scroll');
+    else {
+      // Khi cuộn LÊN - chỉ hiện header khi lên tới đầu trang
+      // (Không tự động hiện khi mới bắt đầu cuộn lên)
     }
     
     lastScroll = currentScroll;
@@ -78,6 +83,7 @@ function setupHeaderScroll() {
 
   window.addEventListener('scroll', handleScroll);
 }
+
 
 // ============ XỬ LÝ SCROLL TO TOP ============
 function setupScrollToTop() {
@@ -127,11 +133,108 @@ function setupMobileMenu() {
 }
 
 // ============ XỬ LÝ SEARCH FORM ============
+// ============ XỬ LÝ SEARCH FORM (FINAL VERSION) ============
 function setupSearchForm() {
   const searchForm = document.getElementById('search-form');
   if (!searchForm) return;
 
-  searchForm.addEventListener('submit', (e) => {
+  // Hàm mở chapter bằng tiêu đề
+  function openChapterByTitle(title) {
+    const chapters = document.querySelectorAll('.chapter-toggle');
+    for (const chapter of chapters) {
+      const chapterTitle = chapter.querySelector('.chapter-title');
+      if (chapterTitle && chapterTitle.textContent.trim() === title.trim()) {
+        if (chapter.nextElementSibling.classList.contains('hidden')) {
+          chapter.click(); // Mở chapter nếu đang đóng
+        }
+        return chapter.nextElementSibling; // Trả về nội dung chapter
+      }
+    }
+    return null;
+  }
+
+  // Hàm mở theme trong chapter
+  function openThemeInChapter(chapterContent, themeTitle) {
+    if (!chapterContent) return false;
+    
+    const themes = chapterContent.querySelectorAll('.theme-toggle');
+    for (const theme of themes) {
+      if (theme.getAttribute('data-theme').trim() === themeTitle.trim()) {
+        if (theme.nextElementSibling.classList.contains('hidden')) {
+          theme.click(); // Mở theme nếu đang đóng
+        }
+        // Cuộn mượt đến theme
+        setTimeout(() => {
+          theme.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Hàm lấy dữ liệu từ tất cả các trang
+  async function fetchAllPagesData() {
+    const pages = [
+      'DaiSo.html',
+      'HinhHoc.html',
+      'ThongKeXacSuat.html',
+      'TongOn.html',
+      'GiaiDe.html'
+    ];
+    
+    const allData = [];
+    
+    try {
+      for (const page of pages) {
+        const response = await fetch(page);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        
+        // Lấy dữ liệu từ mỗi trang
+        const themeItems = doc.querySelectorAll('.theme-item');
+        
+        themeItems.forEach(item => {
+          const themeToggle = item.querySelector('.theme-toggle');
+          const themeTitle = themeToggle.getAttribute('data-theme');
+          const chapterTitle = item.closest('.chapter-content').previousElementSibling
+                              .querySelector('.chapter-title').textContent;
+          
+          // Lấy video items
+          item.querySelectorAll('.video-item').forEach(video => {
+            allData.push({
+              type: 'video',
+              id: video.getAttribute('data-video'),
+              title: video.getAttribute('data-title'),
+              theme: themeTitle,
+              chapter: chapterTitle,
+              videoType: video.getAttribute('data-type'),
+              page: doc.title
+            });
+          });
+          
+          // Lấy PDF items
+          item.querySelectorAll('.pdf-item').forEach(pdf => {
+            allData.push({
+              type: 'pdf',
+              url: pdf.getAttribute('href'),
+              title: pdf.querySelector('span').textContent + ' (PDF)',
+              theme: themeTitle,
+              chapter: chapterTitle,
+              page: doc.title
+            });
+          });
+        });
+      }
+      return allData;
+    } catch (error) {
+      console.error('Lỗi khi tải dữ liệu:', error);
+      return [];
+    }
+  }
+
+  searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = document.getElementById('search-input').value.trim().toLowerCase();
     let searchResults = document.getElementById('search-results');
@@ -144,33 +247,114 @@ function setupSearchForm() {
     if (!searchResults) {
       searchResults = document.createElement('div');
       searchResults.id = 'search-results';
+      searchResults.className = 'bg-white rounded-lg shadow-lg p-4 mt-4 max-h-[500px] overflow-y-auto';
       document.querySelector('main').prepend(searchResults);
     }
 
-    // Kiểm tra nếu có dữ liệu video
-    if (typeof videoData === 'undefined') {
-      searchResults.innerHTML = '<p class="text-center text-white text-lg">Dữ liệu video không tải được.</p>';
-      return;
-    }
+    // Hiển thị loading
+    searchResults.innerHTML = `
+      <div class="text-center py-4">
+        <i class="fas fa-spinner fa-spin text-blue-500 text-xl"></i>
+        <p class="mt-2 text-gray-600">Đang tìm kiếm...</p>
+      </div>
+    `;
+    
+    try {
+      const allData = await fetchAllPagesData();
+      const results = allData.filter(item => 
+        (item.title && item.title.toLowerCase().includes(query)) || 
+        (item.theme && item.theme.toLowerCase().includes(query)) ||
+        (item.chapter && item.chapter.toLowerCase().includes(query))
+      );
 
-    const results = videoData.filter(item => 
-      (item.title && item.title.toLowerCase().includes(query)) || 
-      (item.description && item.description.toLowerCase().includes(query))
-    );
-
-    if (results.length > 0) {
-      searchResults.innerHTML = results.map(result => `
-        <div class="search-result-item">
-          <h3 class="text-lg font-bold text-sky-400">${result.title}</h3>
-          <p class="text-white">${result.description || ''}</p>
-          <div class="flex space-x-4 mt-2">
-            <a href="video.html?id=${result.id}" class="btn-primary">Play</a>
-            ${result.link ? `<a href="${result.link}" target="_blank" class="btn-primary">Link đề</a>` : ''}
+      if (results.length > 0) {
+        searchResults.innerHTML = results.map(result => `
+          <div class="search-result-item p-3 border-b border-gray-200 last:border-0 hover:bg-gray-100 transition">
+            <div class="flex items-start">
+              <div class="mr-3 pt-1">
+                ${result.type === 'video' ? 
+                  `<i class="fas ${result.videoType === 'main' ? 'fa-chalkboard-teacher text-green-500' : 'fa-tasks text-yellow-500'}"></i>` : 
+                  `<i class="far fa-file-pdf text-red-500"></i>`}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-primary">${result.title}</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  <i class="fas fa-tag mr-1"></i>${result.theme}
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  <i class="fas fa-book mr-1"></i>${result.chapter} • ${result.page}
+                </p>
+                <div class="mt-3">
+                  ${result.type === 'video' ? 
+                    `<button class="play-video-btn px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-400 transition 
+                      data-video="${result.id}" 
+                      data-type="${result.videoType}" 
+                      data-theme="${result.theme}" 
+                      data-chapter="${result.chapter}">
+                      <i class="fas fa-play mr-1"></i>Xem video
+                    </button>` : 
+                    `<a href="${result.url}" target="_blank" 
+                      class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                      <i class="fas fa-download mr-1"></i>Tải PDF
+                    </a>`}
+                </div>
+              </div>
+            </div>
           </div>
+        `).join('');
+
+        // Xử lý click nút xem video
+        document.querySelectorAll('.play-video-btn').forEach(btn => {
+          btn.addEventListener('click', async function() {
+            const videoId = this.getAttribute('data-video');
+            const videoType = this.getAttribute('data-type');
+            const themeTitle = this.getAttribute('data-theme');
+            const chapterTitle = this.getAttribute('data-chapter');
+            
+            // Đóng kết quả tìm kiếm
+            searchResults.remove();
+            
+            // Chuyển sang tab curriculum nếu chưa
+            if (document.getElementById('curriculum-content').classList.contains('hidden')) {
+              document.getElementById('curriculum-tab').click();
+              await new Promise(resolve => setTimeout(resolve, 300));
+            }
+            
+            // Mở chapter tương ứng
+            const chapterContent = openChapterByTitle(chapterTitle);
+            if (chapterContent) {
+              // Mở theme tương ứng
+              const themeFound = openThemeInChapter(chapterContent, themeTitle);
+              
+              if (themeFound) {
+                // Phát video sau khi mở xong
+                setTimeout(() => {
+                  changeVideo(videoId, themeTitle, chapterTitle, videoType, true);
+                }, 500);
+              }
+            }
+          });
+        });
+      } else {
+        searchResults.innerHTML = `
+          <div class="text-center py-6">
+            <i class="far fa-frown text-gray-400 text-2xl"></i>
+            <p class="mt-2 text-gray-600">Không tìm thấy kết quả phù hợp</p>
+          </div>
+        `;
+      }
+    } catch (error) {
+      console.error('Lỗi tìm kiếm:', error);
+      searchResults.innerHTML = `
+        <div class="text-center py-6">
+          <i class="fas fa-exclamation-triangle text-red-400 text-2xl"></i>
+          <p class="mt-2 text-red-500">Có lỗi xảy ra khi tìm kiếm</p>
+          <button class="mt-3 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300" 
+            onclick="setupSearchForm()">
+            <i class="fas fa-sync-alt mr-1"></i>Thử lại
+          </button>
         </div>
-      `).join('');
-    } else {
-      searchResults.innerHTML = '<p class="text-center text-white text-lg">Không tìm thấy kết quả.</p>';
+      `;
     }
   });
 
@@ -232,9 +416,9 @@ function setupSliders() {
       },
       pagination: { el: '.swiper-pagination', clickable: true },
       breakpoints: {
-        640: { slidesPerView: 1 },
+        640: { slidesPerView: 1, spaceBetween: 10 },
         768: { slidesPerView: 2, spaceBetween: 30 },
-        1024: { slidesPerView: 3 }
+        1024: { slidesPerView: 3, spaceBetween: 15 }
       }
     });
 
@@ -247,9 +431,9 @@ function setupSliders() {
       },
       pagination: { el: '.swiper-pagination', clickable: true },
       breakpoints: {
-        640: { slidesPerView: 1 },
+        640: { slidesPerView: 1, spaceBetween: 10 },
         768: { slidesPerView: 2, spaceBetween: 30 },
-        1024: { slidesPerView: 3 }
+        1024: { slidesPerView: 3, spaceBetween: 15 }
       }
     });
   }

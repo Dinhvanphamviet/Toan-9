@@ -248,6 +248,8 @@ const HinhhocSlider = new Swiper('.hinhhoc-slider', {
 });
 
 
+
+
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
