@@ -424,7 +424,7 @@ function setupSliders() {
 
     const hinhhocSlider = new Swiper('.hinhhoc-slider', {
       loop: true,
-      autoplay: { delay: 2500, reverseDirection: true },
+      autoplay: { delay: 2500},
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -437,7 +437,7 @@ function setupSliders() {
       }
     });
   }
-}
+} 
 
 // ============ XỬ LÝ COUNTDOWN ============
 function setupCountdown() {
